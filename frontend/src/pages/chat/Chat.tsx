@@ -76,7 +76,7 @@ const Chat = () => {
                     const regex = /(https?:\/\/[^\s]+)/g;
                     objects.forEach((obj) => {
                         try {
-                            // console.log(JSON.parse(obj));
+                            console.log(JSON.parse(obj));
                             runningText += obj;
                             result = JSON.parse(runningText);
                             var _ulrsExtrated = result.choices[0].messages[0].content.match(regex);
