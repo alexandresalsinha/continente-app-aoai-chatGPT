@@ -42,7 +42,7 @@ const Chat = () => {
         }
     }
 
-    const makeApiRequest = async (question: string) => {
+     const makeApiRequest = async (question: string) => {
         lastQuestionRef.current = question;
 
         setIsLoading(true);
@@ -63,19 +63,25 @@ const Chat = () => {
         try {
             const response = await conversationApi(request, abortController.signal);
             if (response?.body) {
-                
                 const reader = response.body.getReader();
                 let runningText = "";
+                var _urls: any[] = [];
+
                 while (true) {
                     const {done, value} = await reader.read();
                     if (done) break;
 
                     var text = new TextDecoder("utf-8").decode(value);
                     const objects = text.split("\n");
+                    const regex = /(https?:\/\/[^\s]+)/g;
                     objects.forEach((obj) => {
                         try {
+                            // console.log(JSON.parse(obj));
                             runningText += obj;
                             result = JSON.parse(runningText);
+                            var _ulrsExtrated = result.choices[0].messages[0].content.match(regex);
+                            console.log(_ulrsExtrated);
+                            _urls =_urls.concat(_ulrsExtrated);
                             setShowLoadingMessage(false);
                             setAnswers([...answers, userMessage, ...result.choices[0].messages]);
                             runningText = "";
@@ -83,6 +89,18 @@ const Chat = () => {
                         catch { }
                     });
                 }
+                
+                // var _jsonParsed = JSON.parse(result.choices[0].messages[0].content);
+                // console.log(_jsonParsed);
+                // debugger
+                // console.log(_jsonParsed.citations[4].content);
+                // debugger
+                // const regex = /(https?:\/\/[^\s]+)/g;
+                // var _urls = _jsonParsed.citations[4].content.match(regex);
+                // console.log(_urls);
+                // var _jsonParsed2 = JSON.parse(_jsonParsed.citations[4].content);
+                // console.log(_jsonParsed2);
+                result.choices[0].messages[1].content += _urls[0];
                 setAnswers([...answers, userMessage, ...result.choices[0].messages]);
             }
             
