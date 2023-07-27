@@ -8,6 +8,7 @@ import rehypeRaw from "rehype-raw";
 
 import styles from "./Chat.module.css";
 import Azure from "../../assets/Azure.svg";
+import Continente from "../../assets/Continente.svg";
 
 import {
     ChatMessage,
@@ -100,7 +101,7 @@ const Chat = () => {
                 // console.log(_urls);
                 // var _jsonParsed2 = JSON.parse(_jsonParsed.citations[4].content);
                 // console.log(_jsonParsed2);
-                result.choices[0].messages[1].content += _urls[0];
+                result.choices[0].messages[1].content +=  '\n' + '\n' + _urls[1].substring(0, _urls[1].length - 2);;
                 setAnswers([...answers, userMessage, ...result.choices[0].messages]);
             }
             
@@ -187,7 +188,7 @@ const Chat = () => {
                         {!lastQuestionRef.current ? (
                             <Stack className={styles.chatEmptyState}>
                                 <img
-                                    src={Azure}
+                                    src={Continente}
                                     className={styles.chatIcon}
                                     aria-hidden="true"
                                 />
