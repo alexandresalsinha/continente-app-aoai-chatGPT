@@ -16,9 +16,9 @@ def static_file(path):
     return app.send_static_file(path)
 
 # ACS Integration Settings
-AZURE_SEARCH_SERVICE = os.environ.get("AZURE_SEARCH_SERVICE", "openai-search-service-f6")
-AZURE_SEARCH_INDEX = os.environ.get("AZURE_SEARCH_INDEX", "recipes-json7-index")
-AZURE_SEARCH_KEY = os.environ.get("AZURE_SEARCH_KEY", "910Aht5M2VrQphyP6AzKWJqX8VM41iW1jljWYGpNuxAzSeDKXNE2")
+AZURE_SEARCH_SERVICE = os.environ.get("AZURE_SEARCH_SERVICE", "gptkb-qspb32h2forbc")
+AZURE_SEARCH_INDEX = os.environ.get("AZURE_SEARCH_INDEX", "recipes-index")
+AZURE_SEARCH_KEY = os.environ.get("AZURE_SEARCH_KEY", "mjl52XLzr0AYWulIGyVCOLtkYhLLowNjZlOLkZWUyxAzSeAw3cFE")
 AZURE_SEARCH_USE_SEMANTIC_SEARCH = os.environ.get("AZURE_SEARCH_USE_SEMANTIC_SEARCH", "false")
 AZURE_SEARCH_SEMANTIC_SEARCH_CONFIG = os.environ.get("AZURE_SEARCH_SEMANTIC_SEARCH_CONFIG", "default")
 AZURE_SEARCH_TOP_K = os.environ.get("AZURE_SEARCH_TOP_K", 5)
@@ -29,9 +29,9 @@ AZURE_SEARCH_TITLE_COLUMN = os.environ.get("AZURE_SEARCH_TITLE_COLUMN")
 AZURE_SEARCH_URL_COLUMN = os.environ.get("AZURE_SEARCH_URL_COLUMN")
 
 # AOAI Integration Settings
-AZURE_OPENAI_RESOURCE = os.environ.get("AZURE_OPENAI_RESOURCE", "openaitestsf6")
-AZURE_OPENAI_MODEL = os.environ.get("AZURE_OPENAI_MODEL", "OpenAiModel")
-AZURE_OPENAI_KEY = os.environ.get("AZURE_OPENAI_KEY", "1f26fc891e754a8b83b9033c6257a28a")
+AZURE_OPENAI_RESOURCE = os.environ.get("AZURE_OPENAI_RESOURCE", "cog-qspb32h2forbc")
+AZURE_OPENAI_MODEL = os.environ.get("AZURE_OPENAI_MODEL", "turbo")
+AZURE_OPENAI_KEY = os.environ.get("AZURE_OPENAI_KEY", "601e7d52e53b49fb8ecca134c84997de")
 AZURE_OPENAI_TEMPERATURE = os.environ.get("AZURE_OPENAI_TEMPERATURE", 0)
 AZURE_OPENAI_TOP_P = os.environ.get("AZURE_OPENAI_TOP_P", 1.0)
 AZURE_OPENAI_MAX_TOKENS = os.environ.get("AZURE_OPENAI_MAX_TOKENS", 1000)
