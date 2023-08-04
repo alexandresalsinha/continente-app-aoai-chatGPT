@@ -1,0 +1,2 @@
+az webapp up --runtime PYTHON:3.10 --sku B1 --name continente-new-bot --resource-group rg-continente-env-bot --location EastUS --subscription 748b1b84-d58b-4d89-a263-fa2724778959
+az webapp up --runtime PYTHON:3.10 --sku B3 --name continente-new-bot --resource-group rg-continente-env-bot

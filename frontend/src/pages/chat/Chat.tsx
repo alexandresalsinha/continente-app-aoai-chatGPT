@@ -30,16 +30,16 @@ const Chat = () => {
     const [isCitationPanelOpen, setIsCitationPanelOpen] = useState<boolean>(false);
     const [answers, setAnswers] = useState<ChatMessage[]>([]);
     const abortFuncs = useRef([] as AbortController[]);
-    const [showAuthMessage, setShowAuthMessage] = useState<boolean>(true);
+    const [showAuthMessage, setShowAuthMessage] = useState<boolean>(false);
     
     const getUserInfoList = async () => {
         const userInfoList = await getUserInfo();
-        if (userInfoList.length === 0 && window.location.hostname !== "127.0.0.1") {
-            setShowAuthMessage(true);
-        }
-        else {
-            setShowAuthMessage(false);
-        }
+        // if (userInfoList.length === 0 && window.location.hostname !== "127.0.0.1") {
+        //     setShowAuthMessage(true);
+        // }
+        // else {
+        //     setShowAuthMessage(false);
+        // }
     }
 
      const makeApiRequest = async (question: string) => {
@@ -79,9 +79,9 @@ const Chat = () => {
                             // console.log(JSON.parse(obj));
                             runningText += obj;
                             result = JSON.parse(runningText);
-                            var _ulrsExtrated = result.choices[0].messages[0].content.match(regex);
-                            console.log(_ulrsExtrated);
-                            _urls =_urls.concat(_ulrsExtrated);
+                            // var _ulrsExtrated = result.choices[0].messages[0].content.match(regex);
+                            // console.log(_ulrsExtrated);
+                            // _urls =_urls.concat(_ulrsExtrated);
                             setShowLoadingMessage(false);
                             setAnswers([...answers, userMessage, ...result.choices[0].messages]);
                             runningText = "";
@@ -100,7 +100,14 @@ const Chat = () => {
                 // console.log(_urls);
                 // var _jsonParsed2 = JSON.parse(_jsonParsed.citations[4].content);
                 // console.log(_jsonParsed2);
-                result.choices[0].messages[1].content += _urls[0];
+                
+                // if(result.choices.length > 0 && result.choices[0].messages.length > 1 && _urls.length > 1 && _urls[1].length > 2){
+                //     result.choices[0].messages[1].content += '\n' + '\n' + _urls[1].slice(0, -2);                    
+                // }
+                // try {
+                //     result.choices[0].messages[1].content += '\n' + '\n' + _urls[1].slice(0, -2);                    
+                // } catch (error) {
+                // }
                 setAnswers([...answers, userMessage, ...result.choices[0].messages]);
             }
             
@@ -143,7 +150,7 @@ const Chat = () => {
     }
 
     useEffect(() => {
-        getUserInfoList();
+        // getUserInfoList();
     }, []);
 
     useEffect(() => chatMessageStreamEnd.current?.scrollIntoView({ behavior: "smooth" }), [showLoadingMessage]);
@@ -171,7 +178,7 @@ const Chat = () => {
             {showAuthMessage ? (
                 <Stack className={styles.chatEmptyState}>
                     <ShieldLockRegular className={styles.chatIcon} style={{color: 'darkorange', height: "200px", width: "200px"}}/>
-                    <h1 className={styles.chatEmptyStateTitle}>Authentication Not Configured</h1>
+                    <h1 className={styles.chatEmptyStateTitle}>Authentication Not Configured v1.3</h1>
                     <h2 className={styles.chatEmptyStateSubtitle}>
                         This app does not have authentication configured. Please add an identity provider by finding your app in the 
                         <a href="https://portal.azure.com/" target="_blank"> Azure Portal </a>
@@ -191,7 +198,7 @@ const Chat = () => {
                                     className={styles.chatIcon}
                                     aria-hidden="true"
                                 />
-                                <h1 className={styles.chatEmptyStateTitle}>Start chatting</h1>
+                                <h1 className={styles.chatEmptyStateTitle}>Start chatting v1.3</h1>
                                 <h2 className={styles.chatEmptyStateSubtitle}>This chatbot is configured to answer your questions</h2>
                             </Stack>
                         ) : (
